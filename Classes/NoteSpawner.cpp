@@ -91,7 +91,9 @@ Note::~Note(){
 }
 TempNoteSpawner::TempNoteSpawner(){
 }
-
+TempNoteSpawner::~TempNoteSpawner(){
+	m_notes.clear();
+}
 void TempNoteSpawner::tempNoteGenerator(){
 	
 	
@@ -137,5 +139,8 @@ void TempNoteSpawner::tempNoteGenerator(){
 
 		m_notes.pushBack(new Note(color, pattern, closingSpeed, nextNoteTime));
 	}
-
+	for each (auto element in m_notes)
+	{
+		element->getSprite()->retain();
+	}
 }

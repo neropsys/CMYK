@@ -68,7 +68,7 @@ bool HelloWorld::init()
 	noteSpawner = new TempNoteSpawner();
 	noteSpawner->tempNoteGenerator();
 	noteIterator = noteSpawner->m_notes.begin();
-
+	
 
 	scoreZone = ScoreZone::Init(SCOREZONE_SCALE);
 
