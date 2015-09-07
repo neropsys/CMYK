@@ -16,6 +16,7 @@ Note::Note(const cocos2d::Color3B& color,
 		   m_nextNoteTime(nextNoteTime),
 		   m_pattern(pattern)
 {
+	//this->addChild(sprite);
 	
 }
 
@@ -52,7 +53,7 @@ void Note::runAction(){
 	}
 
 	actionSequence = Sequence::create(setVisible, action, setInvisble, actionEndCallback, NULL);
-	sprite->runAction(actionSequence);
+	Node::runAction(actionSequence);
 
 }
 const bool Note::isActionFinished(){
@@ -61,11 +62,14 @@ const bool Note::isActionFinished(){
 void Note::actionFinished(){
 	actionEnded = true;
 }
+Sprite** Note::getSpriteReference(){
+	return &sprite;
+}
 Sprite* Note::getSprite(){
 	return sprite;
 }
 void Note::setVisible(bool visible){
-	sprite->setVisible(visible);
+	Node::setVisible(visible);
 }
 bool Note::isVisible() const{
 	return sprite->isVisible();
@@ -86,7 +90,6 @@ Note::~Note(){
 
 }
 TempNoteSpawner::TempNoteSpawner(){
-	tempNoteGenerator();
 }
 
 void TempNoteSpawner::tempNoteGenerator(){
@@ -132,9 +135,7 @@ void TempNoteSpawner::tempNoteGenerator(){
 			break;
 		}
 
-		Note* note = new Note(color, pattern, closingSpeed, nextNoteTime);
-
-		m_notes.push_back(note);
+		m_notes.pushBack(new Note(color, pattern, closingSpeed, nextNoteTime));
 	}
 
 }

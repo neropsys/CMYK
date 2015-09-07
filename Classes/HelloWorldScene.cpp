@@ -66,16 +66,16 @@ bool HelloWorld::init()
 	this->addChild(timeCounterLabel, 4);
 
 	noteSpawner = new TempNoteSpawner();
-
+	noteSpawner->tempNoteGenerator();
 	noteIterator = noteSpawner->m_notes.begin();
-
-	this->addChild(*(noteIterator));
 
 
 	scoreZone = ScoreZone::Init(SCOREZONE_SCALE);
+
 	scoreZone->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	this->addChild(scoreZone->getSprite(), 2);
 
+	
     return true;
 }
 void HelloWorld::onEnter(){
@@ -163,22 +163,17 @@ void HelloWorld::musicStarter(float dt){
 		SimpleAudioEngine::getInstance()->playBackgroundMusic("07-daft_punk-one_more_time.mp3", false);
 		this->removeChild(timeCounterLabel);
 		this->unschedule(schedule_selector(HelloWorld::musicStarter));
-		this->schedule(schedule_selector(HelloWorld::launchNotes));
+		launchNotes(0);
 	}
 }
 void HelloWorld::launchNotes(float nextNote){
-	if ((*noteIterator)->getSprite() == NULL){
-		return;
-	}
 	this->addChild((*noteIterator)->getSprite(), 0);
 	(*noteIterator)->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	attempted = false;
 	(*noteIterator)->setScale(20.f);
+	attempted = false;
+	
 	
 	(*noteIterator)->runAction();
-	
-
-	
 
 }
 void HelloWorld::inputTiming(float f){//called every frame

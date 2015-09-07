@@ -2,7 +2,7 @@
 
 #include "cocos2d.h"
 #include "SquareSprite.h"
-
+#include"cocos2d\cocos\base\CCVector.h"
 //temp include for random note generation
 #include <stdlib.h>
 #include <time.h>
@@ -29,6 +29,7 @@ public:
 	bool isVisible()const override;
 	void setScale(float scale) override;
 	float getScale()const override;
+	cocos2d::Sprite** getSpriteReference();
 	cocos2d::Sprite* getSprite();
 	const bool isActionFinished();
 	~Note();
@@ -45,10 +46,8 @@ private:
 };
 class TempNoteSpawner{
 public:
-	std::deque<Note*> m_notes;
+	cocos2d::Vector<Note*> m_notes;
 	TempNoteSpawner();
 	~TempNoteSpawner();	
-private:
-	
 	void tempNoteGenerator();
 };

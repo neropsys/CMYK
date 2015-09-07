@@ -44,7 +44,7 @@ private:
 	cocos2d::LabelTTF* scoreCounterLabel;
 	cocos2d::Size visibleSize;
 	void resetButton(cocos2d::Sprite* target);
-	std::deque<Note*>::iterator noteIterator;
+	cocos2d::Vector<Note*>::iterator noteIterator;
 
 	//recording file
 	std::fstream fs;
