@@ -109,9 +109,26 @@ void HelloWorld::onExit(){
 }
 
 bool HelloWorld::onTouchBegan(Touch* touch, Event* event){
+
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
 	Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+	log("x : %f, y : %f", touch->getLocation().x, touch->getLocation().y);
+
 	Size s = target->getContentSize();
+
+	if (touch->getLocation().x < (s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
+		touchedSpriteColor = Color3B::YELLOW;
+	}
+	else if (touch->getLocation().x > (s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
+		touchedSpriteColor = Color3B::BLACK;
+	}
+	else if (touch->getLocation().x > (s.width * 0.5) && touch->getLocation().y > (s.height * 0.5)){
+		touchedSpriteColor = Color3B::MAGENTA;
+	}
+	else{
+		touchedSpriteColor = Color3B::Color3B(0, 255, 255);//Cyan
+	}
+
 	Rect rect = Rect(0, 0, s.width, s.height);
 	if (rect.containsPoint(locationInNode)) return true;
 
@@ -132,7 +149,8 @@ void HelloWorld::onTouchEnded(Touch* touch, Event* event){
 		(*noteIterator)->isVisible() &&
 		1.f <= (*noteIterator)->getScale() &&
 		(*noteIterator)->getScale() <= 3.f &&
-		(*noteIterator)->isActionFinished() == false
+		(*noteIterator)->isActionFinished() == false &&
+		touchedSpriteColor.equals((*noteIterator)->getColor())
 		){
 		score += 10;
 		attempted = true;
@@ -167,11 +185,11 @@ void HelloWorld::musicStarter(float dt){
 	}
 }
 void HelloWorld::launchNotes(float nextNote){
+	log("Next note time : %f", nextNote);
 	this->addChild((*noteIterator)->getSprite(), 0);
 	(*noteIterator)->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	(*noteIterator)->setScale(20.f);
-	attempted = false;
-	
+	attempted = false;	
 	
 	(*noteIterator)->runAction();
 
@@ -186,6 +204,7 @@ void HelloWorld::inputTiming(float f){//called every frame
 	if ((*noteIterator)->isActionFinished() == true)
 	{
 		this->removeChild((*noteIterator)->getSprite());
+		(*noteIterator)->getSprite()->autorelease();
 		this->unschedule(schedule_selector(HelloWorld::launchNotes));
 		if (noteIterator != noteSpawner->m_notes.end()){
 			noteIterator++;

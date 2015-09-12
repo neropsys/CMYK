@@ -29,8 +29,8 @@ public:
 	bool isVisible()const override;
 	void setScale(float scale) override;
 	float getScale()const override;
-	cocos2d::Sprite** getSpriteReference();
 	cocos2d::Sprite* getSprite();
+	const cocos2d::Color3B getColor();
 	const bool isActionFinished();
 	~Note();
 private:

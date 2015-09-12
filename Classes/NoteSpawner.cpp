@@ -11,6 +11,7 @@ Note::Note(const cocos2d::Color3B& color,
 		   const float& closingSpeed,
 		   const float& nextNoteTime)
 		   :SquareSprite(color),
+		   m_color(color),
 		   actionEnded(false),
 		   m_closingSpeed(closingSpeed),
 		   m_nextNoteTime(nextNoteTime),
@@ -53,7 +54,7 @@ void Note::runAction(){
 	}
 
 	actionSequence = Sequence::create(setVisible, action, setInvisble, actionEndCallback, NULL);
-	Node::runAction(actionSequence);
+	sprite->runAction(actionSequence);
 
 }
 const bool Note::isActionFinished(){
@@ -62,8 +63,8 @@ const bool Note::isActionFinished(){
 void Note::actionFinished(){
 	actionEnded = true;
 }
-Sprite** Note::getSpriteReference(){
-	return &sprite;
+const Color3B Note::getColor(){
+	return m_color;
 }
 Sprite* Note::getSprite(){
 	return sprite;
@@ -101,13 +102,11 @@ void TempNoteSpawner::tempNoteGenerator(){
 	{
 		srand(time(nullptr));
 		Color3B color;
-		int colorType = rand() % 4 + 1;
-		int actionType = rand() % 3 + 1;
-		float closingSpeed = rand() % 2 + 1;
-		float nextNoteTime = rand() % 2 + 1;
+		int colorType = RandomHelper::random_int(1, 4);
+		int actionType = RandomHelper::random_int(1, 3);
+		float closingSpeed = RandomHelper::random_real(1.f, 2.f);
+		float nextNoteTime = RandomHelper::random_real(2.f, 3.f);
 		ApproachPattern pattern;
-		log("random color value : %d", colorType);
-		log("random action value : %d", actionType);
 
 		switch (colorType)
 		{
@@ -136,11 +135,8 @@ void TempNoteSpawner::tempNoteGenerator(){
 			pattern = ApproachPattern::NoSpin;
 			break;
 		}
-
-		m_notes.pushBack(new Note(color, pattern, closingSpeed, nextNoteTime));
-	}
-	for each (auto element in m_notes)
-	{
-		element->getSprite()->retain();
+		Note* newNote = new Note(color, pattern, closingSpeed, nextNoteTime);
+		newNote->getSprite()->retain();
+		m_notes.pushBack(newNote);
 	}
 }

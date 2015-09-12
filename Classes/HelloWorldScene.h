@@ -40,6 +40,7 @@ private:
 	static int currentNote;
 	int score;
 	int timeCounter;
+	cocos2d::Color3B touchedSpriteColor;
 	cocos2d::LabelTTF* timeCounterLabel;
 	cocos2d::LabelTTF* scoreCounterLabel;
 	cocos2d::Size visibleSize;
