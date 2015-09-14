@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-
+#include "MainScene.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -35,9 +35,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::create("My Game");
+
+		glview->setFrameSize(1000, 1080);
+
         director->setOpenGLView(glview);
     }
-
     // turn on display FPS
     director->setDisplayStats(true);
 
@@ -47,8 +49,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
-
+    auto scene = MainScene::createScene();
+	//Todo:
+	//http://www.cocos2d-x.org/wiki/Multi_resolution_support
     // run
     director->runWithScene(scene);
 

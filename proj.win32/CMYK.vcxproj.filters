@@ -13,18 +13,15 @@
     <Filter Include="src\UI">
       <UniqueIdentifier>{5a19cb49-ef7a-4b64-91f1-f0b09674e35d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scene">
+      <UniqueIdentifier>{e98ce181-15e5-4816-91d1-2e8b8ee0b8e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Button.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TrackLengthSlider.cpp">
@@ -39,8 +36,17 @@
     <ClCompile Include="..\Classes\ActionButtons.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Button.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\ScoreZone.cpp">
-      <Filter>src</Filter>
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainScene.cpp">
+      <Filter>src\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,12 +54,6 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Button.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TrackLengthSlider.h">
@@ -68,8 +68,17 @@
     <ClInclude Include="..\Classes\ActionButtons.h">
       <Filter>src\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Button.h">
+      <Filter>src\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\ScoreZone.h">
-      <Filter>src</Filter>
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainScene.h">
+      <Filter>src\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
