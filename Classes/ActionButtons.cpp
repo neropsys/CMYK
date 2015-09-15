@@ -10,10 +10,10 @@ ActionButton::ActionButton(){}
 ActionButton* ActionButton::Init(){
 	if (!buttons){
 		buttons = new ActionButton();
-		buttons->cyan = new Button("cyan", Color3B(0, 255, 255), Vec2::ANCHOR_BOTTOM_RIGHT);
-		buttons->magenta = new Button("magenta", Color3B::MAGENTA, Vec2::ANCHOR_BOTTOM_LEFT);
-		buttons->yellow = new Button("yellow", Color3B::YELLOW, Vec2::ANCHOR_TOP_RIGHT);
-		buttons->key = new Button("key", Color3B::BLACK, Vec2::ANCHOR_TOP_LEFT);
+		buttons->cyan = new Button("cyan", Color3B(0, 255, 255), Vec2::ANCHOR_TOP_LEFT);
+		buttons->magenta = new Button("magenta", Color3B::MAGENTA, Vec2::ANCHOR_TOP_RIGHT);
+		buttons->yellow = new Button("yellow", Color3B::YELLOW, Vec2::ANCHOR_BOTTOM_LEFT);
+		buttons->key = new Button("key", Color3B::BLACK, Vec2::ANCHOR_BOTTOM_RIGHT);
 	}
 	return buttons;
 }

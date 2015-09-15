@@ -3,7 +3,7 @@ USING_NS_CC;
 
 
 SquareSprite::SquareSprite() : sprite(Sprite::create("White_square_small_opaque.png")){
-
+	sprite->setScale(3);
 }
 SquareSprite::~SquareSprite(){
 	log("SquareSprite destructor called");

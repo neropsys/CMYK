@@ -3,7 +3,6 @@ USING_NS_CC;
 #define MUSIC_START_TIME 3
 #define NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MIN 3000
 #define NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MAX 7000
-#define SCOREZONE_SCALE 2.f
 using namespace std;
 using namespace CocosDenshion;
 ActionButton* HelloWorld::actionButton = nullptr;
@@ -70,7 +69,7 @@ bool HelloWorld::init()
 	noteIterator = noteSpawner->m_notes.begin();
 	
 
-	scoreZone = ScoreZone::Init(SCOREZONE_SCALE);
+	scoreZone = ScoreZone::Init();
 
 	scoreZone->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	this->addChild(scoreZone->getSprite(), 2);
@@ -112,21 +111,27 @@ bool HelloWorld::onTouchBegan(Touch* touch, Event* event){
 
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
 	Point locationInNode = target->convertToNodeSpace(touch->getLocation());
-	log("x : %f, y : %f", touch->getLocation().x, touch->getLocation().y);
+
+	
+	//log("touch coord x : %f, y : %f", touch->getLocation().x, touch->getLocation().y);
 
 	Size s = target->getContentSize();
 
 	if (touch->getLocation().x < (s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
 		touchedSpriteColor = Color3B::YELLOW;
+		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	}
 	else if (touch->getLocation().x > (s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
 		touchedSpriteColor = Color3B::BLACK;
+		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	}
 	else if (touch->getLocation().x > (s.width * 0.5) && touch->getLocation().y > (s.height * 0.5)){
 		touchedSpriteColor = Color3B::MAGENTA;
+		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	}
 	else{
 		touchedSpriteColor = Color3B::Color3B(0, 255, 255);//Cyan
+		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	}
 
 	Rect rect = Rect(0, 0, s.width, s.height);
@@ -137,15 +142,19 @@ bool HelloWorld::onTouchBegan(Touch* touch, Event* event){
 }
 void HelloWorld::onTouchEnded(Touch* touch, Event* event){
 	//detection balance test code
-	log("%f", (*noteIterator)->getScale());
+	log("note scale : %f", (*noteIterator)->getScale());
 	fs << (*noteIterator)->getScale() << endl;
-
-
+	
 	auto button = static_cast<Sprite*>(event->getCurrentTarget());
+
+	Size s = button->getContentSize();
+
+
 	// distance between note detector and cmyk button
-	int EventDistance = (int) button->getPosition().getDistanceSq(scoreZone->getPosition());
-	if (NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MIN < EventDistance &&
-		EventDistance < NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MAX &&
+	int eventDistance = (int) button->getPosition().getDistanceSq(scoreZone->getPosition());
+	log("event distance : %d", eventDistance);
+	if (NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MIN < eventDistance &&
+		eventDistance < NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MAX &&
 		(*noteIterator)->isVisible() &&
 		1.f <= (*noteIterator)->getScale() &&
 		(*noteIterator)->getScale() <= 3.f &&
@@ -165,13 +174,24 @@ void HelloWorld::onTouchEnded(Touch* touch, Event* event){
 }
 void HelloWorld::resetButton(Sprite* target){
 	if (target == actionButton->getSpriteByName("cyan"))
+	{
+		target->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
 		actionButton->getButtonByName("cyan")->resetPos();
+	}
 	else if (target == actionButton->getSpriteByName("magenta"))
+	{
+		target->setAnchorPoint(Vec2::ANCHOR_TOP_RIGHT);
 		actionButton->getButtonByName("magenta")->resetPos();
+	}
 	else if (target == actionButton->getSpriteByName("yellow"))
+	{
+		target->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 		actionButton->getButtonByName("yellow")->resetPos();
-	else
+	}
+	else{
+		target->setAnchorPoint(Vec2::ANCHOR_BOTTOM_RIGHT);
 		actionButton->getButtonByName("key")->resetPos();
+	}
 	actionButton->resetAllButton();
 }
 void HelloWorld::musicStarter(float dt){

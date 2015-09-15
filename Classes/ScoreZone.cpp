@@ -3,16 +3,14 @@
 USING_NS_CC;
 
 ScoreZone* ScoreZone::scoreSquare = nullptr;
-ScoreZone::ScoreZone(){}
 ScoreZone::~ScoreZone(){
 	sprite->release();
 }
-ScoreZone::ScoreZone(const float& setScale) : SquareSprite(){
-	sprite->setScale(setScale);
+ScoreZone::ScoreZone() : SquareSprite(){
 }
-ScoreZone* ScoreZone::Init(const float& setScale){
+ScoreZone* ScoreZone::Init(){
 	if (!scoreSquare){
-		scoreSquare = new ScoreZone(setScale);
+		scoreSquare = new ScoreZone();
 	}
 	return scoreSquare;
 }

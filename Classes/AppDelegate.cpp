@@ -11,6 +11,11 @@ AppDelegate::~AppDelegate()
 {
 }
 
+Resource AppDelegate::smallResource = { cocos2d::CCSizeMake(480, 320), "iphone" };
+Resource AppDelegate::mediumResource = { cocos2d::CCSizeMake(1024, 768), "ipad" };
+Resource AppDelegate::largeResource = { cocos2d::CCSizeMake(2048, 1536), "ipadhd" };
+Resource AppDelegate::resource_16_9 = { cocos2d::CCSizeMake(1920, 1080), "qhd" };
+CCSize AppDelegate::designResolutionSize = cocos2d::CCSizeMake(1280, 720);
 //if you want a different context,just modify the value of glContextAttrs
 //it will takes effect on all platforms
 void AppDelegate::initGLContextAttrs()
@@ -35,11 +40,20 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::create("My Game");
-
-		glview->setFrameSize(1000, 1080);
-
+		glview->setFrameSize(designResolutionSize.width, designResolutionSize.height);
         director->setOpenGLView(glview);
+
+		glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionNoBorder);
     }
+
+
+	CCSize frameSize = glview->getFrameSize();
+
+	/*if (frameSize.height < resource_16_9.size.height){
+		director->setContentScaleFactor(largeResource.size.height / designResolutionSize.height);
+	}*/
+
+
     // turn on display FPS
     director->setDisplayStats(true);
 
@@ -49,7 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = MainScene::createScene();
+    auto scene = HelloWorld::createScene();
 	//Todo:
 	//http://www.cocos2d-x.org/wiki/Multi_resolution_support
     // run

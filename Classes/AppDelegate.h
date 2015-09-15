@@ -8,6 +8,13 @@
 
 The reason for implement as private inheritance is to hide some interface call by Director.
 */
+
+typedef struct tagResource
+{
+	cocos2d::CCSize size;
+	char directory[100];
+}Resource;
+
 class  AppDelegate : private cocos2d::Application
 {
 public:
@@ -16,6 +23,7 @@ public:
 
     virtual void initGLContextAttrs();
 
+	
     /**
     @brief    Implement Director and Scene init code here.
     @return true    Initialize success, app continue.
@@ -34,6 +42,12 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+private:
+	static Resource smallResource; 
+	static Resource mediumResource;
+	static Resource largeResource;
+	static Resource resource_16_9;
+	static cocos2d::CCSize designResolutionSize;
 };
 
 #endif // _APP_DELEGATE_H_

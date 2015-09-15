@@ -7,16 +7,15 @@ Button::Button(const string& name, const Color3B& color, const Vec2& anchor):Squ
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	sprite->setAnchorPoint(anchor);
 	sprite->setName(name);
-	sprite->setScale(2.f);
 	this->name = name;
 	if (anchor == Vec2::ANCHOR_TOP_LEFT)
-		sprite->setPosition(visibleSize.width - VISIBLENBUTTONSIZE, VISIBLENBUTTONSIZE);
+		sprite->setPosition(0, visibleSize.height);
 	else if (anchor == Vec2::ANCHOR_TOP_RIGHT)
-		sprite->setPosition(VISIBLENBUTTONSIZE, VISIBLENBUTTONSIZE);
+		sprite->setPosition(visibleSize.width, visibleSize.height);
 	else if (anchor == Vec2::ANCHOR_BOTTOM_LEFT)
-		sprite->setPosition(visibleSize.width - VISIBLENBUTTONSIZE, visibleSize.height - VISIBLENBUTTONSIZE);
+		sprite->setPosition(0, 0);
 	else if (anchor == Vec2::ANCHOR_BOTTOM_RIGHT)
-		sprite->setPosition(VISIBLENBUTTONSIZE, visibleSize.height - VISIBLENBUTTONSIZE);
+		sprite->setPosition(visibleSize.width, 0);
 	else
 		sprite->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	initPos = sprite->getPosition();

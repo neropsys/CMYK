@@ -23,9 +23,11 @@ bool MainScene::init(){
 	visibleSize = Director::getInstance()->getVisibleSize();
 
 	auto logo = Sprite::create("CMYK_logo.png");
+	logo->setAnchorPoint(Vec2(0.5, 0.5));
+	logo->setScale(0.5);
+	logo->runAction(RepeatForever::create(RotateBy::create(5, 360)));
 	this->addChild(logo);
 	logo->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-
 
 	return true;
 }
