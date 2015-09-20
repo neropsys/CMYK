@@ -1,7 +1,6 @@
 #include "NoteSpawner.h"
 USING_NS_CC;
-Note::Note(const Color3B& color):SquareSprite(color), actionEnded(false){
-	sprite->setScale(20.f);
+Note::Note(const Color3B& color):SquareSprite(), actionEnded(false){
 }
 
 Note::Note(){}
@@ -10,7 +9,7 @@ Note::Note(const cocos2d::Color3B& color,
 		   const ApproachPattern& pattern,
 		   const float& closingSpeed,
 		   const float& nextNoteTime)
-		   :SquareSprite(color),
+		   :SquareSprite(),
 		   m_color(color),
 		   actionEnded(false),
 		   m_closingSpeed(closingSpeed),
@@ -18,17 +17,25 @@ Note::Note(const cocos2d::Color3B& color,
 		   m_pattern(pattern)
 {
 	//this->addChild(sprite);
+	addEvents();
 	
 }
-
-
-void Note::runAction(){
+void Note::addEvents(){
+	setAction();
+}
+const bool Note::isActionFinished(){
+	return actionEnded;
+}
+void Note::actionFinished(){
+	actionEnded = true;
+}
+void Note::setAction(){
 	auto setInvisble = Hide::create();
 	auto setVisible = Show::create();
 	auto actionEndCallback = CallFunc::create([this](){
 		this->actionFinished();
 	});
-	
+
 	RotateBy* rotation = nullptr;
 
 	switch (m_pattern)
@@ -52,42 +59,18 @@ void Note::runAction(){
 		action = Spawn::create(RotateBy::create(m_closingSpeed, 180)
 			, ScaleTo::create(m_closingSpeed, 1), NULL);
 	}
-
 	actionSequence = Sequence::create(setVisible, action, setInvisble, actionEndCallback, NULL);
-	sprite->runAction(actionSequence);
 
 }
-const bool Note::isActionFinished(){
-	return actionEnded;
-}
-void Note::actionFinished(){
-	actionEnded = true;
-}
-const Color3B Note::getColor(){
-	return m_color;
-}
-Sprite* Note::getSprite(){
-	return sprite;
-}
-void Note::setVisible(bool visible){
-	Node::setVisible(visible);
-}
-bool Note::isVisible() const{
-	return sprite->isVisible();
+void Note::runAction(){
+	Sprite::runAction(actionSequence);
 }
 const float Note::getnextNoteTime(){
 	return m_nextNoteTime;
 }
-void Note::setScale(float scale){
-	sprite->setScale(scale);
-}
-float Note::getScale() const{
-	return sprite->getScale();
-}
 Note::~Note(){
 	action->release();
 	actionSequence->release();
-	sprite->release();
 
 }
 TempNoteSpawner::TempNoteSpawner(){
@@ -136,7 +119,7 @@ void TempNoteSpawner::tempNoteGenerator(){
 			break;
 		}
 		Note* newNote = new Note(color, pattern, closingSpeed, nextNoteTime);
-		newNote->getSprite()->retain();
+		newNote->retain();
 		m_notes.pushBack(newNote);
 	}
 }

@@ -1,8 +1,8 @@
 #ifndef __HELLOWORLD_SCENE_H__
 #define __HELLOWORLD_SCENE_H__
 
+#include "Button.h"
 #include "cocos2d.h"
-#include "ActionButtons.h"
 #include "ScoreZone.h"
 #include "NoteSpawner.h"
 #include "SimpleAudioEngine.h"
@@ -32,7 +32,6 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 private:
-	static ActionButton* actionButton;
 	bool isNoteVisible;
 	bool attempted;
 	ScoreZone* scoreZone;
@@ -45,6 +44,12 @@ private:
 	cocos2d::LabelTTF* scoreCounterLabel;
 	cocos2d::Size visibleSize;
 	cocos2d::Vector<Note*>::iterator noteIterator;
+
+	Button* cyan;
+	Button* magenta;
+	Button* yellow;
+	Button* key;
+
 
 	//recording file
 	std::fstream fs;

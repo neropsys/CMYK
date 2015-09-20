@@ -9,6 +9,12 @@ ScoreZone::ScoreZone() :SquareSprite(){
 	this->setName("ScoreZone");
 	this->addEvents();
 }
+ScoreZone* ScoreZone::create(){
+	ScoreZone* scoreZone = new ScoreZone();
+	scoreZone->sprite->setPosition(scoreZone->visibleSize.width / 2, scoreZone->visibleSize.height / 2);
+	scoreZone->sprite->setName("ScoreZone");
+	scoreZone->addEvents();
+}
 void ScoreZone::addEvents(){
 	//TODO:
 	//additional feature may be added later

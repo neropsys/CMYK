@@ -4,8 +4,8 @@ USING_NS_CC;
 
 
 SquareSprite::SquareSprite() :visibleSize(Director::getInstance()->getVisibleSize()){
-	this->create("White_square_small_opaque.png");
-	this->setScale(SQUARE_SCALE);
+	sprite->createWithSpriteFrameName("White_square_small_opaque.png");
+	sprite->setScale(SQUARE_SCALE);
 }
 SquareSprite::~SquareSprite(){}
-void SquareSprite::touchEvent(Touch* touch, Vec2 point){}
+void SquareSprite::initOptions(){}

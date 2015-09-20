@@ -4,14 +4,13 @@
 #include "Variable.h"
 #include <string>
 
-class Button : SquareSprite{
+class Button : public SquareSprite{
 public:
-	Button(const std::string& name, const cocos2d::Color3B& color, const cocos2d::Vec2& position = 0);
+	static Button* create(const cocos2d::Color3B& color, const cocos2d::Vec2& position = cocos2d::Vec2(0, 0));
 	~Button();
 	void resetProperty();
 private:
-	void touchEvent(cocos2d::Touch* touch, cocos2d::Vec2 point) override;
-	void addEvents() override;
+	void addEvents(SquareSprite*) override;
 	cocos2d::Vec2 initPos;
 	cocos2d::Vec2 initAnchor;
 	Button();

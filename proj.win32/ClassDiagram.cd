@@ -1,2 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AppDelegate" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAACAAAAAACAAAAAAAAACAAQAAAEIAAAQAAQAAAAk=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\AppDelegate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Note" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAgAAAAAAAEAAgBAAAAQEAEAAUAAgAAAEAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\NoteSpawner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempNoteSpawner" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAACAAAAAAAAAEAAAAAAAEAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\NoteSpawner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SquareSprite" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAACAQAAAAAAAAAAAAAAIIAAAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\SquareSprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackLengthSlider" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAAAAAAAgAEAAAAAAAAAAAAAAgACAAAEAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\TrackLengthSlider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Button" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAABCAAAAAAAAAAAAQAAAAAAAIAAAAAAIAAEAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScoreZone" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\ScoreZone.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainScene" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAIAAAAAAAAABAAAAAAAAIAABAAAACAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\MainScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HelloWorld" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IhAoAAggAAAMgAAAAAAIABAAEAAABEIEAJAAAECABAI=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\HelloWorldScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="tagResource" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\AppDelegate.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="Resource" Collapsed="true">
+    <Position X="5.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\AppDelegate.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="ApproachPattern" Collapsed="true">
+    <Position X="1.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\NoteSpawner.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="__unnamed_enum_000a_1" Collapsed="true">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAQAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Administrator\Documents\GitHub\CMYK\Classes\NoteSpawner.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Malgun Gothic" Size="9" />
+</ClassDiagram>

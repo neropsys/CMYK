@@ -5,7 +5,6 @@ USING_NS_CC;
 #define NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MAX 7000
 using namespace std;
 using namespace CocosDenshion;
-ActionButton* HelloWorld::actionButton = nullptr;
 int HelloWorld::currentNote = 0;
 
 
@@ -50,8 +49,7 @@ bool HelloWorld::init()
 	this->schedule(schedule_selector(HelloWorld::musicStarter), 1.f);
 	this->schedule(schedule_selector(HelloWorld::inputTiming));
 
-	actionButton = ActionButton::Init();
-	actionButton->addButtons(this, 3);
+
 
 	scoreCounterLabel = LabelTTF::create(to_string(score), "Arial", 50);
 	scoreCounterLabel->setPosition(visibleSize.width / 2, visibleSize.height / 7);
@@ -63,15 +61,26 @@ bool HelloWorld::init()
 	timeCounterLabel->scheduleUpdate();
 	this->addChild(timeCounterLabel, 4);
 
+	cyan = new Button(Color3B(0, 255, 255));
+	magenta = new Button(Color3B::MAGENTA);
+	yellow = new Button(Color3B::YELLOW);
+	key = new Button(Color3B::BLACK);
+
+	this->addChild(cyan);
+	this->addChild(magenta);
+	this->addChild(yellow);
+	this->addChild(key);
+
+
+
 	noteSpawner = new TempNoteSpawner();
 	noteSpawner->tempNoteGenerator();
 	noteIterator = noteSpawner->m_notes.begin();
 	
 
-	scoreZone = ScoreZone::Init();
+	scoreZone = new ScoreZone();
 
-	scoreZone->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	this->addChild(scoreZone->getSprite(), 2);
+	this->addChild(scoreZone, 2);
 
 	
     return true;
@@ -87,11 +96,6 @@ void HelloWorld::onEnter(){
 		target->setPosition(target->getPosition() + touch->getDelta());
 	};
 	listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
-
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener->clone(), actionButton->getSpriteByName("cyan"));
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener->clone(), actionButton->getSpriteByName("magenta"));
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener->clone(), actionButton->getSpriteByName("yellow"));
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener->clone(), actionButton->getSpriteByName("key"));
 
 
 
@@ -165,33 +169,6 @@ void HelloWorld::onTouchEnded(Touch* touch, Event* event){
 	}
 	else score = 0;
 	scoreCounterLabel->setString(to_string(score));
-
-
-
-	resetButton(button);
-
-}
-void HelloWorld::resetButton(Sprite* target){
-	if (target == actionButton->getSpriteByName("cyan"))
-	{
-		target->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
-		actionButton->getButtonByName("cyan")->resetPos();
-	}
-	else if (target == actionButton->getSpriteByName("magenta"))
-	{
-		target->setAnchorPoint(Vec2::ANCHOR_TOP_RIGHT);
-		actionButton->getButtonByName("magenta")->resetPos();
-	}
-	else if (target == actionButton->getSpriteByName("yellow"))
-	{
-		target->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-		actionButton->getButtonByName("yellow")->resetPos();
-	}
-	else{
-		target->setAnchorPoint(Vec2::ANCHOR_BOTTOM_RIGHT);
-		actionButton->getButtonByName("key")->resetPos();
-	}
-	actionButton->resetAllButton();
 }
 void HelloWorld::musicStarter(float dt){
 	timeCounter -= 1;
@@ -205,7 +182,7 @@ void HelloWorld::musicStarter(float dt){
 }
 void HelloWorld::launchNotes(float nextNote){
 	log("Next note time : %f", nextNote);
-	this->addChild((*noteIterator)->getSprite(), 0);
+	this->addChild((*noteIterator), 0);
 	(*noteIterator)->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	(*noteIterator)->setScale(20.f);
 	attempted = false;	
@@ -222,8 +199,8 @@ void HelloWorld::inputTiming(float f){//called every frame
 	//cleanup when note is gone
 	if ((*noteIterator)->isActionFinished() == true)
 	{
-		this->removeChild((*noteIterator)->getSprite());
-		(*noteIterator)->getSprite()->autorelease();
+		this->removeChild((*noteIterator));
+		(*noteIterator)->autorelease();
 		this->unschedule(schedule_selector(HelloWorld::launchNotes));
 		if (noteIterator != noteSpawner->m_notes.end()){
 			noteIterator++;
