@@ -11,7 +11,7 @@ ScoreZone::ScoreZone() : SquareSprite(){
 ScoreZone* ScoreZone::Init(){
 	if (!scoreSquare){
 		scoreSquare = new ScoreZone();
-	}
+	} 
 	return scoreSquare;
 }
 Sprite* ScoreZone::getSprite(){
