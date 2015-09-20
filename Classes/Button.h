@@ -1,23 +1,20 @@
 #pragma once
 #include "cocos2d.h"
 #include "SquareSprite.h"
+#include "Variable.h"
 #include <string>
-#define VISIBLENBUTTONSIZE 100 //width & height of CMYK button on the screen
 
 class Button : SquareSprite{
 public:
-	Button(const std::string& name, const cocos2d::Color3B& color, const cocos2d::Vec2& anchor);
-	cocos2d::Sprite* getSprite();
-	void resetPos();
-	void easeResetPos();
+	Button(const std::string& name, const cocos2d::Color3B& color, const cocos2d::Vec2& position = 0);
 	~Button();
-	cocos2d::Vec2 getSpritePos();
-	std::string getName();
+	void resetProperty();
 private:
+	void touchEvent(cocos2d::Touch* touch, cocos2d::Vec2 point) override;
+	void addEvents() override;
 	cocos2d::Vec2 initPos;
-	std::string name;
+	cocos2d::Vec2 initAnchor;
 	Button();
 	Button(const Button&);
-	void doActionReset();
 
 };

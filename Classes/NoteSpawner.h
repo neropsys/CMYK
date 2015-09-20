@@ -23,18 +23,9 @@ public:
 	//Temporary method & constructor for random generation
 	void runAction(const ApproachPattern& pattern, const float& closingSpeed, const float& nextNoteTime);
 	Note(const cocos2d::Color3B& color);
-
-	void runAction();
-	void setVisible(bool visible) override;
-	bool isVisible()const override;
-	void setScale(float scale) override;
-	float getScale()const override;
-	cocos2d::Sprite* getSprite();
-	const cocos2d::Color3B getColor();
 	const bool isActionFinished();
 	~Note();
 private:
-	cocos2d::Color3B m_color;
 	ApproachPattern m_pattern;
 	float m_closingSpeed;
 	float m_nextNoteTime;

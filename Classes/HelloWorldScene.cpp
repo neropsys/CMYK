@@ -6,7 +6,6 @@ USING_NS_CC;
 using namespace std;
 using namespace CocosDenshion;
 ActionButton* HelloWorld::actionButton = nullptr;
-ScoreZone* HelloWorld::scoreZone = nullptr;
 int HelloWorld::currentNote = 0;
 
 

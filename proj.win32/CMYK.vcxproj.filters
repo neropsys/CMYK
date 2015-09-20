@@ -16,6 +16,9 @@
     <Filter Include="src\Scene">
       <UniqueIdentifier>{e98ce181-15e5-4816-91d1-2e8b8ee0b8e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Variables">
+      <UniqueIdentifier>{13f984ce-cafd-4e56-aa63-0366d14bdda4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,13 +36,7 @@
     <ClCompile Include="..\Classes\SquareSprite.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ActionButtons.cpp">
-      <Filter>src\UI</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Button.cpp">
-      <Filter>src\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ScoreZone.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
@@ -47,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\MainScene.cpp">
       <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScoreZone.cpp">
+      <Filter>src\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,13 +65,7 @@
     <ClInclude Include="..\Classes\SquareSprite.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ActionButtons.h">
-      <Filter>src\UI</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Button.h">
-      <Filter>src\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ScoreZone.h">
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
@@ -79,6 +73,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MainScene.h">
       <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Variable.h">
+      <Filter>src\Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScoreZone.h">
+      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
