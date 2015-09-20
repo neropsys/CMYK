@@ -2,18 +2,15 @@
 
 USING_NS_CC;
 
-ScoreZone* ScoreZone::scoreSquare = nullptr;
 ScoreZone::~ScoreZone(){
-	sprite->release();
 }
-ScoreZone::ScoreZone() : SquareSprite(){
+ScoreZone::ScoreZone() :SquareSprite(){
+	this->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+	this->setName("ScoreZone");
+	this->addEvents();
 }
-ScoreZone* ScoreZone::Init(){
-	if (!scoreSquare){
-		scoreSquare = new ScoreZone();
-	}
-	return scoreSquare;
+void ScoreZone::addEvents(){
+	//TODO:
+	//additional feature may be added later
 }
-Sprite* ScoreZone::getSprite(){
-	return sprite;
-}
+//Button("ScoreZone", Color3B::WHITE, Vec2(visibleSize.width / 2, visibleSize.height / 2))

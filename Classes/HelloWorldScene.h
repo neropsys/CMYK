@@ -3,9 +3,9 @@
 
 #include "cocos2d.h"
 #include "ActionButtons.h"
+#include "ScoreZone.h"
 #include "NoteSpawner.h"
 #include "SimpleAudioEngine.h"
-#include "ScoreZone.h"
 #include <string>
 
 //debug include
@@ -35,7 +35,7 @@ private:
 	static ActionButton* actionButton;
 	bool isNoteVisible;
 	bool attempted;
-	static ScoreZone* scoreZone;
+	ScoreZone* scoreZone;
 	TempNoteSpawner* noteSpawner;
 	static int currentNote;
 	int score;
@@ -44,7 +44,6 @@ private:
 	cocos2d::LabelTTF* timeCounterLabel;
 	cocos2d::LabelTTF* scoreCounterLabel;
 	cocos2d::Size visibleSize;
-	void resetButton(cocos2d::Sprite* target);
 	cocos2d::Vector<Note*>::iterator noteIterator;
 
 	//recording file

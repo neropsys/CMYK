@@ -1,12 +1,10 @@
 #pragma once
 #include "cocos2d.h"
-class SquareSprite abstract : public cocos2d::Node {
-public:
-	virtual cocos2d::Sprite* getSprite() abstract;
-	void setPosition(float x, float y) override;
+class SquareSprite : public cocos2d::Sprite {
 protected:
-	cocos2d::Sprite* sprite;
 	SquareSprite();
-	SquareSprite(const cocos2d::Color3B& color);
 	virtual ~SquareSprite();
+	virtual void addEvents()=0;
+	virtual void touchEvent(cocos2d::Touch* touch, cocos2d::Vec2 point);
+	cocos2d::Size visibleSize;
 };
