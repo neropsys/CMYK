@@ -2,7 +2,8 @@
 
 #include "cocos2d.h"
 #include "SquareSprite.h"
-#include"cocos2d\cocos\base\CCVector.h"
+#include "cocos2d\cocos\base\CCVector.h"
+#include "Variable.h"
 //temp include for random note generation
 #include <stdlib.h>
 #include <time.h>

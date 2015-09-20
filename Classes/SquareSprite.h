@@ -1,5 +1,6 @@
 #pragma once
 #include "cocos2d.h"
+#include "Variable.h"
 class SquareSprite abstract : public cocos2d::Node {
 public:
 	virtual cocos2d::Sprite* getSprite() abstract;

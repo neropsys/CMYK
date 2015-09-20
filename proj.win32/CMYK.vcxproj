@@ -160,6 +160,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\NoteSpawner.h" />
     <ClInclude Include="..\Classes\SquareSprite.h" />
     <ClInclude Include="..\Classes\TrackLengthSlider.h" />
+    <ClInclude Include="..\Classes\Variable.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

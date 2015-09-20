@@ -6,6 +6,7 @@
 #include "NoteSpawner.h"
 #include "SimpleAudioEngine.h"
 #include "ScoreZone.h"
+#include "Variable.h"
 #include <string>
 
 //debug include

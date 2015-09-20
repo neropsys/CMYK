@@ -1,8 +1,5 @@
 #include "HelloWorldScene.h"
 USING_NS_CC;
-#define MUSIC_START_TIME 3
-#define NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MIN 3000
-#define NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MAX 7000
 using namespace std;
 using namespace CocosDenshion;
 ActionButton* HelloWorld::actionButton = nullptr;
@@ -117,25 +114,28 @@ bool HelloWorld::onTouchBegan(Touch* touch, Event* event){
 
 	Size s = target->getContentSize();
 
-	if (touch->getLocation().x < (s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
-		touchedSpriteColor = Color3B::YELLOW;
-		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	}
-	else if (touch->getLocation().x > (s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
-		touchedSpriteColor = Color3B::BLACK;
-		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	}
-	else if (touch->getLocation().x > (s.width * 0.5) && touch->getLocation().y > (s.height * 0.5)){
-		touchedSpriteColor = Color3B::MAGENTA;
-		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	}
-	else{
-		touchedSpriteColor = Color3B::Color3B(0, 255, 255);//Cyan
-		target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	}
-
 	Rect rect = Rect(0, 0, s.width, s.height);
-	if (rect.containsPoint(locationInNode)) return true;
+	if (rect.containsPoint(locationInNode)){
+
+		if (touch->getLocation().x < (s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
+			touchedSpriteColor = Color3B::YELLOW;
+			target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		}
+		else if (touch->getLocation().x >(s.width * 0.5) && touch->getLocation().y < (s.height * 0.5)){
+			touchedSpriteColor = Color3B::BLACK;
+			target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		}
+		else if (touch->getLocation().x >(s.width * 0.5) && touch->getLocation().y >(s.height * 0.5)){
+			touchedSpriteColor = Color3B::MAGENTA;
+			target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		}
+		else{
+			touchedSpriteColor = Color3B::Color3B(0, 255, 255);//Cyan
+			target->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		}
+		target->setPosition(Vec2(touch->getLocation().x, touch->getLocation().y));
+		return true;
+	}
 
 	return false;
 
@@ -156,11 +156,10 @@ void HelloWorld::onTouchEnded(Touch* touch, Event* event){
 	if (NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MIN < eventDistance &&
 		eventDistance < NOTEDETECTOR_AND_CMYKBUTTON_DISTANCE_THRESHOLD_MAX &&
 		(*noteIterator)->isVisible() &&
-		1.f <= (*noteIterator)->getScale() &&
-		(*noteIterator)->getScale() <= 3.f &&
+		(*noteIterator)->getScale() >= SQUARE_SCALE &&
+		(*noteIterator)->getScale() <= SQUARE_SCALE + 1 &&
 		(*noteIterator)->isActionFinished() == false &&
-		touchedSpriteColor.equals((*noteIterator)->getColor())
-		){
+		touchedSpriteColor == (*noteIterator)->getColor()){
 		score += 10;
 		attempted = true;
 	}
@@ -226,8 +225,9 @@ void HelloWorld::inputTiming(float f){//called every frame
 		this->removeChild((*noteIterator)->getSprite());
 		(*noteIterator)->getSprite()->autorelease();
 		this->unschedule(schedule_selector(HelloWorld::launchNotes));
-		if (noteIterator != noteSpawner->m_notes.end()){
-			noteIterator++;
+		if (noteIterator != noteSpawner->m_notes.end())
+		{
+		noteIterator++;
 		this->schedule(schedule_selector(HelloWorld::launchNotes), (*noteIterator)->getnextNoteTime());
 		}
 	}

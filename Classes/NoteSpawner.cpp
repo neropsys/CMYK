@@ -23,7 +23,7 @@ Note::Note(const cocos2d::Color3B& color,
 
 
 void Note::runAction(){
-	auto setInvisble = Hide::create();
+	auto setInvisible = Hide::create();
 	auto setVisible = Show::create();
 	auto actionEndCallback = CallFunc::create([this](){
 		this->actionFinished();
@@ -45,15 +45,13 @@ void Note::runAction(){
 
 	if (rotation == nullptr)
 	{
-		action = Spawn::create(ScaleTo::create(m_closingSpeed, 1), NULL);
+		action = Spawn::create(ScaleTo::create(m_closingSpeed, SQUARE_SCALE), NULL);
 	}
 	else
 	{
-		action = Spawn::create(RotateBy::create(m_closingSpeed, 180)
-			, ScaleTo::create(m_closingSpeed, 1), NULL);
+		action = Spawn::create(rotation, ScaleTo::create(m_closingSpeed, SQUARE_SCALE), NULL);
 	}
-
-	actionSequence = Sequence::create(setVisible, action, setInvisble, actionEndCallback, NULL);
+	actionSequence = Sequence::create(setVisible, action, setInvisible, actionEndCallback, NULL);
 	sprite->runAction(actionSequence);
 
 }
